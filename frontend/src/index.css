@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 199 89% 48%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 0;
+    overscroll-behavior: none;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-slate-900/80 backdrop-blur-md border border-slate-700/60 shadow-2xl;
+  }
+
+  .glass-button {
+    @apply bg-slate-800/60 hover:bg-slate-700 text-slate-100 border border-slate-600 rounded-lg px-3 py-2 text-sm transition-colors active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .glass-button.active {
+    @apply bg-cyan-500/20 border-cyan-500/50 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.15)];
+  }
+
+  .glass-button.danger {
+    @apply bg-red-900/20 border-red-900/50 text-red-400 hover:bg-red-900/40;
+  }
+
+  .glass-button.success {
+    @apply bg-green-900/20 border-green-900/50 text-green-400 hover:bg-green-900/40;
+  }
+
+  .map-canvas {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    outline: none;
+  }
+
+  .cesium-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

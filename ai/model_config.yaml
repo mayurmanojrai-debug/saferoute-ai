@@ -1,0 +1,39 @@
+# SafeRoute AI traffic analysis model configuration
+model:
+  # Path to a YOLOv8/YOLOv11 weights file (.pt). Leave empty to use the
+  # OpenCV motion-detection fallback (no vehicle classification).
+  weights: "models/yolov8n.pt"
+  framework: "ultralytics"   # ultralytics | opencv_dnn | fallback
+  device: "auto"             # auto | cpu | cuda
+  confidence: 0.35
+  iou_threshold: 0.45
+
+classes:
+  - car
+  - truck
+  - bus
+  - motorcycle
+  - ambulance
+  - fire_engine
+  - police
+
+tracking:
+  max_age: 30          # frames a track can be missing before removal
+  min_hits: 3          # hits before a track is confirmed
+  iou_match_threshold: 0.3
+
+congestion:
+  # vehicles per 100m of road lane -> level thresholds
+  low_max: 12
+  moderate_max: 24
+  heavy_max: 40
+  # average speed (km/h) thresholds
+  speed_low_min: 35
+  speed_moderate_min: 20
+  speed_heavy_min: 8
+
+video:
+  source: 0              # camera index, RTSP URL, or video file
+  fps: 15
+  frame_width: 1280
+  frame_height: 720
