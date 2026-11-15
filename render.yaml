@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: saferoute-ai
+    env: python
+    plan: free
+    buildCommand: |
+      cd backend
+      python -m venv .venv
+      . .venv/bin/activate
+      pip install -r requirements.txt
+      python init_db.py
+      python seed_data.py
+    startCommand: |
+      cd backend
+      . .venv/bin/activate
+      uvicorn app.main:app --host 0.0.0.0 --port 8000
+    envVars:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/saferoute
+      REDIS_URL: redis://redis:6379/0
+      SIMULATION_ENABLED: "true"
+    ports:
+      - port: 8000
+        internalPort: 8000
+    healthCheckPath: /health
